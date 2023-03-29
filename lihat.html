@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tampilkan Data JSON</title>
+  </head>
+  <body>
+    <div id="data"></div>
+    
+    <script>
+      fetch('blogworlds.json')
+        .then(response => response.json())
+        .then(data => {
+          let output = '<ul>';
+          data.forEach(function(contact) {
+            output += `
+              <li>
+                <h3>${contact.name}</h3>
+                <p>Email: ${contact.email}</p>
+                <p>Subject: ${contact.subject}</p>
+                <p>Message: ${contact.message}</p>
+              </li>
+            `;
+          });
+          output += '</ul>';
+          document.getElementById('data').innerHTML = output;
+        })
+        .catch(error => console.error(error));
+    </script>
+  </body>
+</html>
